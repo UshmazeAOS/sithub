@@ -47,7 +47,7 @@ local teleportMenuButton = movementPage.AddButton("open TP menu", function()
 	end
 end)
 
------------------------ FAKE REVIVE (NOT STOLEN FROM MANGOHUB) -----------------------
+----------------------- FAKE REVIVE (CREDIT: MANGOHUB) -----------------------
 local semiRevive = gamePage.AddButton("Fake Respawn", function()
 	game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 	game.Players.LocalPlayer.PlayerGui.MainGui.ItCamFrame.TopFrame.Visible = false
