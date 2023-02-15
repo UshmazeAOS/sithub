@@ -9,6 +9,8 @@ function DisplayMessage(message)
     })
 end
 
+killPlayerScript = game.Players.LocalPlayer.Character.KillScript
+
 ----------------------- SET VARIABLES -----------------------
 getgenv().speedToggled = false
 getgenv().speedDisabled = false
@@ -18,7 +20,7 @@ getgenv().defaultJump = game.Players.LocalPlayer.Character.Humanoid.JumpPower
 getgenv().EDEnabled = false
 local animateScript = game.Players.LocalPlayer.Character.Animate
 getgenv().flightEnabled = false
-
+getgenv().invincibilityFound = false
 
 ----------------------- ANTICHEAT BYPASS -----------------------
 local old = mt.__namecall
@@ -58,20 +60,15 @@ local miscellaneousPage = MainUI.AddPage("miscellaneous")
 
 ----------------------- GODMODE -----------------------
 local godModeToggle = commonCheatsPage.AddToggle("Godmode", false, function(Value)
-    for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-    	if Value then
-			if v.Name == "hitbox" then
-				v.Name = "hitboxInvincible"
-				DisplayGodmode("applied invincibility.")
-			end
-        else
-			if v.Name == "hitboxInvincible" then
-				v.Name = "hitbox"
-				DisplayMessage("removed incibility.")
-			end
-		end
-    end
+	if Value then
+		killPlayerScript.Parent = nil
+		DisplayMessage("applied godmode.")
+	else
+		killPlayerScript.Parent = game.Players.LocalPlayer.Character
+		DisplayMessage("removed godmode.")
+	end
 end)
+
 
 ----------------------- FINISH TOWER -----------------------
 local teleportToFinishButton = commonCheatsPage.AddButton("TP To Finish", function()
@@ -106,6 +103,66 @@ local openTeleportMenuButton = movementPage.AddButton("open TP menu", function()
 	local TPUI = UILibrary.Load("teleport menu")
 	local playerTPPage = TPUI.AddPage("players")
 	local MapTPPage = TPUI.AddPage("map")
+	local sectionsPage = TPUI.AddPage("sections")
+	----------------------- GET SECTIONS -----------------------
+	for i3, v3 in pairs(workspace.tower.sections:GetChildren()) do
+		for i4,v4 in pairs(v3:GetChildren()) do
+			if v4.Name == "i" then
+				val = v4.Value
+				if val == 8 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 7 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						wait(0.2)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 6 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 5 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 4 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 3 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 2 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.start.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+				if val == 1 then
+					local sections = sectionsPage.AddButton(v3.Name, function()
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v3.center.CFrame + Vector3.new(0, 5, 0)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.Angles(0, 0, math.rad(90))
+					end)
+				end
+			end
+		end
+	end
+	
+	
 	local teleportToFinishButtonTPMenu = MapTPPage.AddButton("TP To Finish", function()
 	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.tower.finishes:GetChildren()[1].CFrame
 	DisplayMessage("Taveling to end...")
@@ -242,7 +299,7 @@ local disableInverseColoursButton = disablePage.AddButton("disable InverseColour
 	DisplayMessage("removed inverse colours.")
 end)
 
------------------------ ENABLE/DISABLE FLIGHT -----------------------
+----------------------- ENABLE/DISABLE FLIGHT FROM MANGOHUB -----------------------
 local flightToggle = movementPage.AddToggle("Flight", false, function(Value)
 	getgenv().flightEnabled = Value
 	if Value then DisplayMessage("flight enabled.") else DisplayMessage("flight disabled.") end
