@@ -131,11 +131,3 @@ local EDToggle = miscellaneousPage.AddToggle("Explosive Death", false, function(
 		DisplayMessage("ED Disabled")
 	end
 end)
-
-local EWO = miscellaneousPage.AddButton("easy way out.", function()
-	for i2,v2 in pairs(game.Players.LocalPlayer.Character.HumanoidRootPart:GetChildren()) do
-		firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v2, 0)
-		wait(0.01)
-		firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v2, 1)
-	end
-end)
