@@ -47,7 +47,7 @@ for i, Function in next, reg do
 end
 
 ----------------------- MAKE MAIN UI PAGES -----------------------
-local MainUI = UILibrary.Load("Tower of Hell Menu")
+local MainUI = UILibrary.Load("Tower Of Hell - UShmaze AOS")
 local commonCheatsPage = MainUI.AddPage("Common")
 local movementPage = MainUI.AddPage("Movement")
 local disablePage = MainUI.AddPage("disables")

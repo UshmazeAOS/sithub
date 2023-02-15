@@ -1,6 +1,6 @@
 ----------------------- UI HANDLER -----------------------
 if not UILibrary then getgenv().UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))() end
-local MainUI = UILibrary.Load("hide and seek cheats")
+local MainUI = UILibrary.Load("Hide And Seek Extreme - UShmaze AOS")
 
 ----------------------- MAKE UI PAGES -----------------------
 local itCheatsPage = MainUI.AddPage("IT section")
